@@ -181,8 +181,7 @@ function SpotifyItemDisplay() {
     const getAlbumTracks = () => {
       axios
         .get(
-          `https://api.spotify.com/v1/albums/${itemDetails.id}/tracks
-  `,
+          `https://api.spotify.com/v1/albums/${itemDetails.id}/tracks`,
           {
             headers: { Authorization: `Bearer ${token}` },
             params: {
@@ -192,6 +191,7 @@ function SpotifyItemDisplay() {
         )
         .then((resp) => {
           setAlbumTracks(resp.data.items);
+          console.log(resp.data.items);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);

@@ -6,7 +6,8 @@ const DataContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const CLIENT_ID = "70d6f68bf619491ca54a08666f8a86e5";
-  const REDIRECT_URI = "https://statifyprojectbyhan.netlify.app";
+  // const REDIRECT_URI = "https://statifyprojectbyhan.netlify.app";
+  const REDIRECT_URI = "http://localhost:3000/"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const navigate = useNavigate();
