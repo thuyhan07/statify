@@ -357,7 +357,7 @@ function UserData() {
       { start: 0, end: 8 },
       { start: 0, end: 8 },
     ]);
-  }, [timeRange]);
+  }, [timeRange, token]);
 
   useEffect(() => {
     const getUserRecentlyPlayed = () => {
@@ -397,7 +397,7 @@ function UserData() {
       setUserTrackLog(groupedData);
     };
     getUserHistoryByDate();
-  }, [userRecentlyPlayed]);
+  }, [userRecentlyPlayed, token]);
 
   useEffect(() => {
     const getUserTopGenres = () => {

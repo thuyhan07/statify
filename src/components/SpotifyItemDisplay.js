@@ -273,11 +273,10 @@ function SpotifyItemDisplay() {
       setScrollPos([{ start: 0, end: 6 }]);
     } else if (itemDetails.type === "track") {
       getTrackAudioFeatures();
-      console.log(trackAudioFeaturesBars);
     } else if (itemDetails.type === "album") {
       getAlbumTracks();
     }
-  }, [itemDetails, token, trackAudioFeaturesBars]);
+  }, [itemDetails, token]);
 
   if (showDetails === true) {
     if (itemDetails.type === "artist") {

@@ -22,7 +22,7 @@ function NavBar() {
         setToken(token);
     }};
     getToken();
-  }, []);
+  }, [setToken]);
 
   return (
     <div className="nav">
