@@ -404,7 +404,7 @@ function UserData() {
       let genresList = [];
       let newGenresList = userTopArtists
       .map((artist) => artist.genres)
-      .forEach((genres) => {
+      newGenresList.forEach((genres) => {
         genresList.push(...genres);
       });
       genresList = genresList.sort();
