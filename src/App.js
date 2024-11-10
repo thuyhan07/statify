@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import { ContextProvider, useData } from "./context/Context";
+import NavBar from "./components/NavBar";
+import Browse from "./components/Browse";
+import Home from "./components/Home";
+import UserData from "./components/UserData";
 
 function App() {
-  return (
+
+  return (<BrowserRouter>
+    <ContextProvider>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <NavBar/>
+      <Routes>
+          <Route index element={<Home />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="browse" element={<Browse />} />
+          <Route path="/myprofile" element={<UserData />} />
+        </Routes>
+      
     </div>
+    </ContextProvider></BrowserRouter>
   );
 }
 
