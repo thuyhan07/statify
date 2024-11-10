@@ -402,6 +402,11 @@ function UserData() {
   useEffect(() => {
     const getUserTopGenres = () => {
       let genresList = [];
+      let newGenresList = userTopArtists
+      .map((artist) => artist.genres)
+      .forEach((genres) => {
+        genresList.push(...genres);
+      });
       genresList = genresList.sort();
       if (genresList.length > 0) {
         let i;
