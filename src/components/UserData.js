@@ -378,7 +378,7 @@ function UserData() {
         });
     };
     getUserRecentlyPlayed();
-  }, [currentTime]);
+  }, [currentTime, token]);
 
   useEffect(() => {
     const getUserHistoryByDate = () => {
