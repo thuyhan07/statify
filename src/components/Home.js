@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useData } from "../context/Context";
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";

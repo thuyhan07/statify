@@ -326,10 +326,10 @@
 .spotify-item-container {
   display: flex;
   flex-direction: column;
-  width: 10rem;
-  /* max-width: 160px; */
-  height: 10rem;
-  margin-bottom: 1rem;
+  /* width: 10rem; */
+  max-width: 160px;
+  /* height: 10rem; */
+  /* margin-bottom: 1rem; */
 }
 
 .spotify-item-image {
@@ -908,7 +908,7 @@
   font-weight: 500;
   align-self: flex-start;
   color: rgb(145, 145, 145);
-  transition: 0.2s
+  transition: 0.2s;
 }
 
 .spotify-item-showdetail-button:hover ~ .spotify-item-name {

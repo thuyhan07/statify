@@ -16,8 +16,6 @@ function SpotifyItemDisplay() {
     showDetails,
     setShowDetails,
     itemDetails,
-    setItemDetails,
-    displayItem,
   } = useData();
 
   const [albumTracks, setAlbumTracks] = useState([]);
@@ -26,7 +24,7 @@ function SpotifyItemDisplay() {
   const [topAlbums, setTopAlbums] = useState([]);
   const [relatedArtists, setRelatedArtists] = useState([]);
   const [scrollPos, setScrollPos] = useState([{ start: 0, end: 6 }]);
-  const [trackArtists, setTrackArtists] = useState("");
+  // const [trackArtists, setTrackArtists] = useState("");
   const [trackAudioFeatures, setTrackAudioFeatures] = useState({});
 
   const trackKeys = [
@@ -64,93 +62,93 @@ function SpotifyItemDisplay() {
 
   
 
-  const getAlbumTracks = () => {
-    axios
-      .get(
-        `https://api.spotify.com/v1/albums/${itemDetails.id}/tracks
-`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          params: {
-            limit: 50,
-          },
-        }
-      )
-      .then((resp) => {
-        setAlbumTracks(resp.data.items);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+//   const getAlbumTracks = () => {
+//     axios
+//       .get(
+//         `https://api.spotify.com/v1/albums/${itemDetails.id}/tracks
+// `,
+//         {
+//           headers: { Authorization: `Bearer ${token}` },
+//           params: {
+//             limit: 50,
+//           },
+//         }
+//       )
+//       .then((resp) => {
+//         setAlbumTracks(resp.data.items);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching data:", error);
+//       });
+//   };
 
-  const getTrackAudioFeatures = () => {
-    axios
-      .get(`https://api.spotify.com/v1/audio-features/${itemDetails.id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((resp) => {
-        console.log("audio features", resp.data);
-        setTrackAudioFeatures(resp.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+//   const getTrackAudioFeatures = () => {
+//     axios
+//       .get(`https://api.spotify.com/v1/audio-features/${itemDetails.id}`, {
+//         headers: { Authorization: `Bearer ${token}` },
+//       })
+//       .then((resp) => {
+//         console.log("audio features", resp.data);
+//         setTrackAudioFeatures(resp.data);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching data:", error);
+//       });
+//   };
 
-  const getArtistTopTracks = () => {
-    axios
-      .get(`https://api.spotify.com/v1/artists/${itemDetails.id}/top-tracks`, {
-        headers: { Authorization: `Bearer ${token}` },
-        params: {
-          limit: 10,
-        },
-      })
-      .then((resp) => {
-        console.log(resp.data.tracks);
-        setTopTracks(resp.data.tracks);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+//   const getArtistTopTracks = () => {
+//     axios
+//       .get(`https://api.spotify.com/v1/artists/${itemDetails.id}/top-tracks`, {
+//         headers: { Authorization: `Bearer ${token}` },
+//         params: {
+//           limit: 10,
+//         },
+//       })
+//       .then((resp) => {
+//         console.log(resp.data.tracks);
+//         setTopTracks(resp.data.tracks);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching data:", error);
+//       });
+//   };
 
-  const getArtistTopAlbums = () => {
-    axios
-      .get(`https://api.spotify.com/v1/artists/${itemDetails.id}/albums`, {
-        headers: { Authorization: `Bearer ${token}` },
-        params: {
-          limit: 49,
-        },
-      })
-      .then((resp) => {
-        console.log(resp.data.items);
-        setTopAlbums(resp.data.items);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+//   const getArtistTopAlbums = () => {
+//     axios
+//       .get(`https://api.spotify.com/v1/artists/${itemDetails.id}/albums`, {
+//         headers: { Authorization: `Bearer ${token}` },
+//         params: {
+//           limit: 49,
+//         },
+//       })
+//       .then((resp) => {
+//         console.log(resp.data.items);
+//         setTopAlbums(resp.data.items);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching data:", error);
+//       });
+//   };
 
-  const getRelatedArtists = () => {
-    axios
-      .get(
-        `https://api.spotify.com/v1/artists/${itemDetails.id}/related-artists`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          params: {
-            limit: 49,
-          },
-        }
-      )
-      .then((resp) => {
-        console.log(resp.data);
-        setRelatedArtists(resp.data.artists);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+//   const getRelatedArtists = () => {
+//     axios
+//       .get(
+//         `https://api.spotify.com/v1/artists/${itemDetails.id}/related-artists`,
+//         {
+//           headers: { Authorization: `Bearer ${token}` },
+//           params: {
+//             limit: 49,
+//           },
+//         }
+//       )
+//       .then((resp) => {
+//         console.log(resp.data);
+//         setRelatedArtists(resp.data.artists);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching data:", error);
+//       });
+//   };
 
   const displayNext = (index, startPos, endPos) => {
     let newPos = [...scrollPos];
@@ -180,6 +178,93 @@ function SpotifyItemDisplay() {
   };
 
   useEffect(() => {
+    const getAlbumTracks = () => {
+      axios
+        .get(
+          `https://api.spotify.com/v1/albums/${itemDetails.id}/tracks
+  `,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            params: {
+              limit: 50,
+            },
+          }
+        )
+        .then((resp) => {
+          setAlbumTracks(resp.data.items);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+  
+    const getTrackAudioFeatures = () => {
+      axios
+        .get(`https://api.spotify.com/v1/audio-features/${itemDetails.id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((resp) => {
+          console.log("audio features", resp.data);
+          setTrackAudioFeatures(resp.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+  
+    const getArtistTopTracks = () => {
+      axios
+        .get(`https://api.spotify.com/v1/artists/${itemDetails.id}/top-tracks`, {
+          headers: { Authorization: `Bearer ${token}` },
+          params: {
+            limit: 10,
+          },
+        })
+        .then((resp) => {
+          console.log(resp.data.tracks);
+          setTopTracks(resp.data.tracks);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+  
+    const getArtistTopAlbums = () => {
+      axios
+        .get(`https://api.spotify.com/v1/artists/${itemDetails.id}/albums`, {
+          headers: { Authorization: `Bearer ${token}` },
+          params: {
+            limit: 49,
+          },
+        })
+        .then((resp) => {
+          console.log(resp.data.items);
+          setTopAlbums(resp.data.items);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+  
+    const getRelatedArtists = () => {
+      axios
+        .get(
+          `https://api.spotify.com/v1/artists/${itemDetails.id}/related-artists`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            params: {
+              limit: 49,
+            },
+          }
+        )
+        .then((resp) => {
+          console.log(resp.data);
+          setRelatedArtists(resp.data.artists);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
     if (itemDetails.type === "artist") {
       setArtistGenres(itemDetails.genres);
       getArtistTopTracks();
@@ -195,7 +280,7 @@ function SpotifyItemDisplay() {
   }, [itemDetails]);
 
   if (showDetails === true) {
-    if (itemDetails.type == "artist") {
+    if (itemDetails.type === "artist") {
       return (
         <div className="spotify-item-detail-screen">
           <div className="spotify-item-detail-container spotify-item-detail-container-artist">
@@ -312,7 +397,7 @@ function SpotifyItemDisplay() {
           </div>
         </div>
       );
-    } else if (itemDetails.type == "track") {
+    } else if (itemDetails.type === "track") {
       return (
         <div className="spotify-item-detail-screen">
           <div className="spotify-item-detail-container">
@@ -375,7 +460,7 @@ function SpotifyItemDisplay() {
                     <p>Loudness</p>
                   </div>
                   <div className="spotify-track-details-block">
-                    {trackAudioFeatures.key == -1 ? (
+                    {trackAudioFeatures.key === -1 ? (
                       <h1>None</h1>
                     ) : (
                       <h1>{trackKeys[trackAudioFeatures.key]}</h1>
@@ -383,7 +468,7 @@ function SpotifyItemDisplay() {
                     <p>Key</p>
                   </div>
                   <div className="spotify-track-details-block">
-                    {trackAudioFeatures.mode == 0 ? (
+                    {trackAudioFeatures.mode === 0 ? (
                       <h1>Minor</h1>
                     ) : (
                       <h1>Major</h1>
@@ -427,7 +512,7 @@ function SpotifyItemDisplay() {
           </div>
         </div>
       );
-    } else if (itemDetails.type == "album") {
+    } else if (itemDetails.type === "album") {
       return (
         <div className="spotify-item-detail-screen">
           <div className="spotify-item-detail-container spotify-item-detail-container-album">

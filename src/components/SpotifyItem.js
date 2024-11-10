@@ -14,11 +14,11 @@ function SpotifyItem({ item, itemType, reDesign, index }) {
     }).then((resp)=>displayItem(resp.data))
   }
 
-  const getTrackInfo = (id) => {
-    axios.get(`https://api.spotify.com/v1/tracks/${id}`, {
-      headers: {Authorization: `Bearer ${token}`}
-    }).then((resp)=>displayItem(resp.data))
-  }
+  // const getTrackInfo = (id) => {
+  //   axios.get(`https://api.spotify.com/v1/tracks/${id}`, {
+  //     headers: {Authorization: `Bearer ${token}`}
+  //   }).then((resp)=>displayItem(resp.data))
+  // }
 
   useEffect(() => {
     if (containerRef.current && buttonRef.current) {

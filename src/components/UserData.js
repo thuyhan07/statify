@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useData } from "../context/Context";
 import { CiLock } from "react-icons/ci";
-import { ImGift } from "react-icons/im";
 import {
   FaRegArrowAltCircleLeft,
   FaRegArrowAltCircleRight,
@@ -32,65 +31,65 @@ function UserData() {
     { start: 0, end: 8 },
   ]);
 
-  const displayTimeRange = () => {
-    if (timeRange == "short_term") {
-      setTimeRangeDisplay("from the past 4 weeks");
-    } else if (timeRange == "medium_term") {
-      setTimeRangeDisplay("from the past 6 months");
-    } else {
-      setTimeRangeDisplay("from the past year");
-    }
-  };
+  // const displayTimeRange = () => {
+  //   if (timeRange === "short_term") {
+  //     setTimeRangeDisplay("from the past 4 weeks");
+  //   } else if (timeRange === "medium_term") {
+  //     setTimeRangeDisplay("from the past 6 months");
+  //   } else {
+  //     setTimeRangeDisplay("from the past year");
+  //   }
+  // };
 
-  const getUserProfile = () => {
-    axios
-      .get("https://api.spotify.com/v1/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((resp) => {
-        console.log(resp.data);
-        setUserProfile(resp.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+  // const getUserProfile = () => {
+  //   axios
+  //     .get("https://api.spotify.com/v1/me", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((resp) => {
+  //       console.log(resp.data);
+  //       setUserProfile(resp.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // };
 
-  const getUserTopArtists = () => {
-    axios
-      .get("https://api.spotify.com/v1/me/top/artists", {
-        headers: { Authorization: `Bearer ${token}` },
-        params: {
-          time_range: timeRange,
-          limit: 50,
-        },
-      })
-      .then((resp) => {
-        console.log(resp.data);
-        setUserTopArtists(resp.data.items);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+  // const getUserTopArtists = () => {
+  //   axios
+  //     .get("https://api.spotify.com/v1/me/top/artists", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //       params: {
+  //         time_range: timeRange,
+  //         limit: 50,
+  //       },
+  //     })
+  //     .then((resp) => {
+  //       console.log(resp.data);
+  //       setUserTopArtists(resp.data.items);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // };
 
-  const getUserTopTracks = () => {
-    axios
-      .get("https://api.spotify.com/v1/me/top/tracks", {
-        headers: { Authorization: `Bearer ${token}` },
-        params: {
-          time_range: timeRange,
-          limit: 50,
-        },
-      })
-      .then((resp) => {
-        console.log(resp.data);
-        setUserTopTracks(resp.data.items);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+  // const getUserTopTracks = () => {
+  //   axios
+  //     .get("https://api.spotify.com/v1/me/top/tracks", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //       params: {
+  //         time_range: timeRange,
+  //         limit: 50,
+  //       },
+  //     })
+  //     .then((resp) => {
+  //       console.log(resp.data);
+  //       setUserTopTracks(resp.data.items);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // };
 
   const displayNext = (index, startPos, endPos, list) => {
     let newPos = [...scrollPos];
@@ -119,92 +118,92 @@ function UserData() {
     console.log(scrollPos);
   };
 
-  const getUserTopGenres = () => {
-    let genresList = [];
-    let newGenresList = userTopArtists
-      .map((artist) => artist.genres)
-      .forEach((genres) => {
-        genresList.push(...genres);
-      });
-    genresList = genresList.sort();
-    if (genresList.length > 0) {
-      let i;
-      let l;
-      let counter = 1;
-      let genres = [];
-      let genresCount = [];
-      for (i = 0; i < genresList.length; i++) {
-        if (genresList[i] == genresList[i + 1]) {
-          counter = counter + 1;
-        } else {
-          genresCount.push(counter);
-          genres.push(genresList[i]);
-          counter = 1;
-        }
-      }
-      let completeGenresArray = [];
-      for (l = 0; l < genres.length; l++) {
-        completeGenresArray.push({ genre: genres[l], count: genresCount[l] });
-      }
-      completeGenresArray = completeGenresArray.sort(
-        (a, b) => b.count - a.count
-      );
-      setUserTopGenres(completeGenresArray.map((item) => item.genre));
-    }
-  };
+  // const getUserTopGenres = () => {
+  //   let genresList = [];
+  //   let newGenresList = userTopArtists
+  //     .map((artist) => artist.genres)
+  //     .forEach((genres) => {
+  //       genresList.push(...genres);
+  //     });
+  //   genresList = genresList.sort();
+  //   if (genresList.length > 0) {
+  //     let i;
+  //     let l;
+  //     let counter = 1;
+  //     let genres = [];
+  //     let genresCount = [];
+  //     for (i = 0; i < genresList.length; i++) {
+  //       if (genresList[i] === genresList[i + 1]) {
+  //         counter = counter + 1;
+  //       } else {
+  //         genresCount.push(counter);
+  //         genres.push(genresList[i]);
+  //         counter = 1;
+  //       }
+  //     }
+  //     let completeGenresArray = [];
+  //     for (l = 0; l < genres.length; l++) {
+  //       completeGenresArray.push({ genre: genres[l], count: genresCount[l] });
+  //     }
+  //     completeGenresArray = completeGenresArray.sort(
+  //       (a, b) => b.count - a.count
+  //     );
+  //     setUserTopGenres(completeGenresArray.map((item) => item.genre));
+  //   }
+  // };
 
-  const getUserTopAlbums = () => {
-    let albumsList = userTopTracks
-      .map((track) => track.album)
-      .sort((a, b) => a.name.localeCompare(b.name));
-    console.log("albumsList");
-    console.log(albumsList);
-    if (albumsList.length > 0) {
-      let i;
-      let l;
-      let counter = 1;
-      let albums = [];
-      let albumsCount = [];
-      for (i = 0; i < albumsList.length - 1; i++) {
-        if (albumsList[i].id == albumsList[i + 1].id) {
-          counter = counter + 1;
-        } else {
-          albumsCount.push(counter);
-          albums.push(albumsList[i]);
-          counter = 1;
-        }
-      }
-      let completeAlbumsArray = [];
-      for (l = 0; l < albums.length; l++) {
-        completeAlbumsArray.push({ album: albums[l], count: albumsCount[l] });
-      }
-      completeAlbumsArray = completeAlbumsArray.sort(
-        (a, b) => b.count - a.count
-      );
-      console.log(albums);
-      console.log(albumsCount);
-      console.log(completeAlbumsArray.map((item) => item.album));
-      setUserTopAlbums(completeAlbumsArray.map((item) => item.album));
-    }
-  };
+  // const getUserTopAlbums = () => {
+  //   let albumsList = userTopTracks
+  //     .map((track) => track.album)
+  //     .sort((a, b) => a.name.localeCompare(b.name));
+  //   console.log("albumsList");
+  //   console.log(albumsList);
+  //   if (albumsList.length > 0) {
+  //     let i;
+  //     let l;
+  //     let counter = 1;
+  //     let albums = [];
+  //     let albumsCount = [];
+  //     for (i = 0; i < albumsList.length - 1; i++) {
+  //       if (albumsList[i].id === albumsList[i + 1].id) {
+  //         counter = counter + 1;
+  //       } else {
+  //         albumsCount.push(counter);
+  //         albums.push(albumsList[i]);
+  //         counter = 1;
+  //       }
+  //     }
+  //     let completeAlbumsArray = [];
+  //     for (l = 0; l < albums.length; l++) {
+  //       completeAlbumsArray.push({ album: albums[l], count: albumsCount[l] });
+  //     }
+  //     completeAlbumsArray = completeAlbumsArray.sort(
+  //       (a, b) => b.count - a.count
+  //     );
+  //     console.log(albums);
+  //     console.log(albumsCount);
+  //     console.log(completeAlbumsArray.map((item) => item.album));
+  //     setUserTopAlbums(completeAlbumsArray.map((item) => item.album));
+  //   }
+  // };
 
-  const getUserRecentlyPlayed = () => {
-    axios
-      .get("https://api.spotify.com/v1/me/player/recently-played", {
-        headers: { Authorization: `Bearer ${token}` },
-        params: {
-          limit: 50,
-          before: currentTime,
-        },
-      })
-      .then((resp) => {
-        console.log(resp.data.items);
-        setUserRecentlyPlayed(resp.data.items);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
+  // const getUserRecentlyPlayed = () => {
+  //   axios
+  //     .get("https://api.spotify.com/v1/me/player/recently-played", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //       params: {
+  //         limit: 50,
+  //         before: currentTime,
+  //       },
+  //     })
+  //     .then((resp) => {
+  //       console.log(resp.data.items);
+  //       setUserRecentlyPlayed(resp.data.items);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // };
 
   let userRecentlyPlayedTime = userRecentlyPlayed.map(
     ({ played_at: time, ...args }) => ({
@@ -213,21 +212,21 @@ function UserData() {
     })
   );
 
-  const getUserHistoryByDate = () => {
-    const groupedData = userRecentlyPlayed.reduce((acc, item) => {
-      const date = item.played_at.split("T")[0];
-      const existingGroup = acc.find((group) => group.date === date);
+  // const getUserHistoryByDate = () => {
+  //   const groupedData = userRecentlyPlayed.reduce((acc, item) => {
+  //     const date = item.played_at.split("T")[0];
+  //     const existingGroup = acc.find((group) => group.date === date);
 
-      if (existingGroup) {
-        existingGroup.content.push(item);
-      } else {
-        acc.push({ date, content: [item] });
-      }
-      return acc; 
-    }, []);
-    console.log(groupedData);
-    setUserTrackLog(groupedData);
-  };
+  //     if (existingGroup) {
+  //       existingGroup.content.push(item);
+  //     } else {
+  //       acc.push({ date, content: [item] });
+  //     }
+  //     return acc; 
+  //   }, []);
+  //   console.log(groupedData);
+  //   setUserTrackLog(groupedData);
+  // };
 
   const dateConverter = (date) => {
     let day = Number(date.slice(date.length - 2, date.length));
@@ -238,13 +237,13 @@ function UserData() {
 
     let last2digits = day % 100;
     let lastdigit = day % 10;
-    if (last2digits == 11 || last2digits == 12 || last2digits == 13) {
+    if (last2digits === 11 || last2digits === 12 || last2digits === 13) {
       day = day + "th";
-    } else if (lastdigit == 1) {
+    } else if (lastdigit === 1) {
       day = day + "st";
-    } else if (lastdigit == 2) {
+    } else if (lastdigit === 2) {
       day = day + "nd";
-    } else if (lastdigit == 3) {
+    } else if (lastdigit === 3) {
       day = day + "rd";
     } else {
       day = day + "th";
@@ -287,6 +286,8 @@ function UserData() {
       case 12:
         month = "December";
         break;
+      default:
+        month = "December";
     }
     displayDate = month + " " + day + ", " + year;
     console.log(displayDate);
@@ -294,6 +295,65 @@ function UserData() {
   };
 
   useEffect(() => {
+    const displayTimeRange = () => {
+      if (timeRange === "short_term") {
+        setTimeRangeDisplay("from the past 4 weeks");
+      } else if (timeRange === "medium_term") {
+        setTimeRangeDisplay("from the past 6 months");
+      } else {
+        setTimeRangeDisplay("from the past year");
+      }
+    };
+  
+    const getUserProfile = () => {
+      axios
+        .get("https://api.spotify.com/v1/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((resp) => {
+          console.log(resp.data);
+          setUserProfile(resp.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+  
+    const getUserTopArtists = () => {
+      axios
+        .get("https://api.spotify.com/v1/me/top/artists", {
+          headers: { Authorization: `Bearer ${token}` },
+          params: {
+            time_range: timeRange,
+            limit: 50,
+          },
+        })
+        .then((resp) => {
+          console.log(resp.data);
+          setUserTopArtists(resp.data.items);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
+  
+    const getUserTopTracks = () => {
+      axios
+        .get("https://api.spotify.com/v1/me/top/tracks", {
+          headers: { Authorization: `Bearer ${token}` },
+          params: {
+            time_range: timeRange,
+            limit: 50,
+          },
+        })
+        .then((resp) => {
+          console.log(resp.data);
+          setUserTopTracks(resp.data.items);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
     getUserProfile();
     getUserTopArtists();
     getUserTopTracks();
@@ -307,18 +367,117 @@ function UserData() {
   }, [timeRange]);
 
   useEffect(() => {
+    const getUserRecentlyPlayed = () => {
+      axios
+        .get("https://api.spotify.com/v1/me/player/recently-played", {
+          headers: { Authorization: `Bearer ${token}` },
+          params: {
+            limit: 50,
+            before: currentTime,
+          },
+        })
+        .then((resp) => {
+          console.log(resp.data.items);
+          setUserRecentlyPlayed(resp.data.items);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    };
     getUserRecentlyPlayed();
   }, [currentTime]);
 
   useEffect(() => {
+    const getUserHistoryByDate = () => {
+      const groupedData = userRecentlyPlayed.reduce((acc, item) => {
+        const date = item.played_at.split("T")[0];
+        const existingGroup = acc.find((group) => group.date === date);
+  
+        if (existingGroup) {
+          existingGroup.content.push(item);
+        } else {
+          acc.push({ date, content: [item] });
+        }
+        return acc; 
+      }, []);
+      console.log(groupedData);
+      setUserTrackLog(groupedData);
+    };
     getUserHistoryByDate();
   }, [userRecentlyPlayed]);
 
   useEffect(() => {
+    const getUserTopGenres = () => {
+      let genresList = [];
+      let newGenresList = userTopArtists
+        .map((artist) => artist.genres)
+        .forEach((genres) => {
+          genresList.push(...genres);
+        });
+      genresList = genresList.sort();
+      if (genresList.length > 0) {
+        let i;
+        let l;
+        let counter = 1;
+        let genres = [];
+        let genresCount = [];
+        for (i = 0; i < genresList.length; i++) {
+          if (genresList[i] === genresList[i + 1]) {
+            counter = counter + 1;
+          } else {
+            genresCount.push(counter);
+            genres.push(genresList[i]);
+            counter = 1;
+          }
+        }
+        let completeGenresArray = [];
+        for (l = 0; l < genres.length; l++) {
+          completeGenresArray.push({ genre: genres[l], count: genresCount[l] });
+        }
+        completeGenresArray = completeGenresArray.sort(
+          (a, b) => b.count - a.count
+        );
+        setUserTopGenres(completeGenresArray.map((item) => item.genre));
+      }
+    };
     getUserTopGenres();
   }, [userTopArtists]);
 
   useEffect(() => {
+    const getUserTopAlbums = () => {
+      let albumsList = userTopTracks
+        .map((track) => track.album)
+        .sort((a, b) => a.name.localeCompare(b.name));
+      console.log("albumsList");
+      console.log(albumsList);
+      if (albumsList.length > 0) {
+        let i;
+        let l;
+        let counter = 1;
+        let albums = [];
+        let albumsCount = [];
+        for (i = 0; i < albumsList.length - 1; i++) {
+          if (albumsList[i].id === albumsList[i + 1].id) {
+            counter = counter + 1;
+          } else {
+            albumsCount.push(counter);
+            albums.push(albumsList[i]);
+            counter = 1;
+          }
+        }
+        let completeAlbumsArray = [];
+        for (l = 0; l < albums.length; l++) {
+          completeAlbumsArray.push({ album: albums[l], count: albumsCount[l] });
+        }
+        completeAlbumsArray = completeAlbumsArray.sort(
+          (a, b) => b.count - a.count
+        );
+        console.log(albums);
+        console.log(albumsCount);
+        console.log(completeAlbumsArray.map((item) => item.album));
+        setUserTopAlbums(completeAlbumsArray.map((item) => item.album));
+      }
+    };
     getUserTopAlbums();
   }, [userTopTracks]);
 

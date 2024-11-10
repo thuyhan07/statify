@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { ContextProvider, useData } from "./context/Context";
+import { ContextProvider } from "./context/Context";
 import NavBar from "./components/NavBar";
 import Browse from "./components/Browse";
 import Home from "./components/Home";

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../images/statify-logo.png"
 
 function NavBar() {
-  const { token, setToken, logOut, logInAddress, getToken } = useData();
+  const { token, logOut, logInAddress, getToken } = useData();
 
   useEffect(() => {
     getToken();
