@@ -4,9 +4,23 @@ import { Link } from "react-router-dom";
 import logo from "../images/statify-logo.png"
 
 function NavBar() {
-  const { token, logOut, logInAddress, getToken } = useData();
+  const { token, logOut, setToken, logInAddress } = useData();
 
   useEffect(() => {
+    const getToken = () => {
+      const hash = window.location.hash;
+      let token = "";
+      if (!token && hash) {
+        token = hash
+          .substring(1)
+          .split("&")
+          .find((elem) => elem.startsWith("access_token"))
+          .split("=")[1];
+        window.location.hash = "";
+        window.localStorage.setItem("token", token);
+        console.log(token);
+        setToken(token);
+    }};
     getToken();
   }, []);
 

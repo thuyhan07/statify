@@ -205,13 +205,6 @@ function UserData() {
   //     });
   // };
 
-  let userRecentlyPlayedTime = userRecentlyPlayed.map(
-    ({ played_at: time, ...args }) => ({
-      played_at: new Date(time).getTime(),
-      ...args,
-    })
-  );
-
   // const getUserHistoryByDate = () => {
   //   const groupedData = userRecentlyPlayed.reduce((acc, item) => {
   //     const date = item.played_at.split("T")[0];
@@ -409,11 +402,6 @@ function UserData() {
   useEffect(() => {
     const getUserTopGenres = () => {
       let genresList = [];
-      let newGenresList = userTopArtists
-        .map((artist) => artist.genres)
-        .forEach((genres) => {
-          genresList.push(...genres);
-        });
       genresList = genresList.sort();
       if (genresList.length > 0) {
         let i;
@@ -441,7 +429,7 @@ function UserData() {
       }
     };
     getUserTopGenres();
-  }, [userTopArtists]);
+  }, [userTopArtists, token]);
 
   useEffect(() => {
     const getUserTopAlbums = () => {
@@ -479,7 +467,7 @@ function UserData() {
       }
     };
     getUserTopAlbums();
-  }, [userTopTracks]);
+  }, [userTopTracks, token]);
 
   if (!token) {
     return (
@@ -495,7 +483,7 @@ function UserData() {
           <div className="user-profile-page">
             <div className="user-profile-header">
               {userProfile.images && userProfile.images.length > 0 ? (
-                <img src={userProfile.images[1].url} className="user-pfp" />
+                <img src={userProfile.images[1].url} className="user-pfp" alt=""/>
               ) : (
                 <p className="user-pfp">No image available</p>
               )}
@@ -505,6 +493,7 @@ function UserData() {
                 <a
                   href={userProfile.external_urls.spotify}
                   target="_blank"
+                  rel="noreferrer"
                   className="spotify-redirect"
                 >
                   <FaSpotify />

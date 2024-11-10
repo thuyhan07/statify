@@ -277,7 +277,7 @@ function SpotifyItemDisplay() {
     } else if (itemDetails.type === "album") {
       getAlbumTracks();
     }
-  }, [itemDetails]);
+  }, [itemDetails, token, trackAudioFeaturesBars]);
 
   if (showDetails === true) {
     if (itemDetails.type === "artist") {
@@ -313,6 +313,7 @@ function SpotifyItemDisplay() {
                   <a
                     href={itemDetails.external_urls.spotify}
                     target="_blank"
+                    rel="noreferrer"
                     className="spotify-redirect"
                   >
                     <FaSpotify />
@@ -414,6 +415,7 @@ function SpotifyItemDisplay() {
                 <a
                   href={itemDetails.external_urls.spotify}
                   target="_blank"
+                  rel="noreferrer"
                   className="spotify-track-link spotify-redirect"
                 >
                   <FaSpotify />

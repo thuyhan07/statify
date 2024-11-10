@@ -44,7 +44,7 @@ function SpotifyItem({ item, itemType, reDesign, index }) {
             }
           }}
         ></button>
-        {reDesign == "add-ranking" ? (
+        {reDesign === "add-ranking" ? (
           <div className="ranking">
             <h2>{index + 1}</h2>
           </div>
@@ -78,7 +78,7 @@ function SpotifyItem({ item, itemType, reDesign, index }) {
             displayItem(item);
           }}
         ></button>
-        {reDesign == "add-ranking" ? (
+        {reDesign === "add-ranking" ? (
           <div className="ranking">
             <h2>{index + 1}</h2>
           </div>
@@ -112,7 +112,7 @@ function SpotifyItem({ item, itemType, reDesign, index }) {
             displayItem(item);
           }}
         ></button>
-        {reDesign == "add-ranking" ? (
+        {reDesign === "add-ranking" ? (
           <div className="ranking">
             <h2>{index + 1}</h2>
           </div>

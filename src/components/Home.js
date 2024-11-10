@@ -37,7 +37,7 @@ function Home() {
           <a
             href="https://www.youtube.com/watch?v=ABqhwEmR7E0"
             className="home-header-subtitle home-link"
-            target="_blank"
+            target="_blank" rel="noreferrer" 
           >
             Watch the video <IoIosArrowForward className="link-arrow" />
           </a>
