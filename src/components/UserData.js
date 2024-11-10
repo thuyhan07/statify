@@ -429,7 +429,7 @@ function UserData() {
       }
     };
     getUserTopGenres();
-  }, [userTopArtists, token]);
+  }, [userTopArtists]);
 
   useEffect(() => {
     const getUserTopAlbums = () => {
